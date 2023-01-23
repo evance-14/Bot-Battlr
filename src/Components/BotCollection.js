@@ -46,7 +46,7 @@ const BotCollection = () => {
         },[]);
     };
 
-     //render the collection of soldiers and bots
+      //render the collection of soldiers and bots
      return(
         <div>
            <div className="row">
