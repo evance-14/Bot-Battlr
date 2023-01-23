@@ -44,12 +44,53 @@ const BotCollection = () => {
         fetch(`http://localhost:8001/bots/${botId}`, {
             method: 'DELETE',
         },[]);
-
-
     };
+
+     //render the collection of soldiers and bots
      return(
         <div>
-
+           <div className="row">
+            <div className="col-10 p-4 bg-success container-fluid mx-auto">
+                <div className="row">
+                    {/* Iterating through the soldiers array to create a card for each soldier */}
+                    {soldiers.map(soldier => {
+                        return (
+                            <div key={soldier.id} onClick={() => removeSoldier(soldier)} className="card col-3" style={{ width: "18rem" }}>
+                                <img src={soldier.avatar_url} className="card-img-top" alt="..." />
+                                <div className="card-body">
+                                    <h5 className="card-title">Name:{soldier.name}</h5>
+                                    <p className="card-text">Health:{soldier.health}</p>
+                                    <p className="card-text">Weapon:{soldier.weapon}</p>
+                                    <p className="card-text">Catchphrase:{soldier.catchphrase}</p>
+                                    <p className="card-text">Bot_class:{soldier.bot_class}</p>
+                                    <p className="card-text">Damage:{soldier.damage}</p>                                    
+                                </div>
+                                {/* Delete button for each soldier*/}
+                                <button className="btn btn-danger" onClick={() => deleteSoldier(soldier.id)}>X</button>
+                            </div>
+                        );
+                      })}
+                      </div>
+                  </div>
+                  <div className="row">
+                    {/* Iterating through the selectedBots array to create a card for each bot */}
+                      {selectedBots.map(bot => {
+                          return (
+                              <div onClick={() => addSoldier(bot)} key={bot.id} className="card col-3" style={{ width: "18rem;" }}>
+                                  <img src={bot.avatar_url} className="card-img-top" alt="..." />
+                                  <div className="card-body">
+                                  <h5 className="card-title">Name:{bot.name}</h5>
+                                  <p className="card-text">Health:{bot.health}</p>
+                                  <p className="card-text">Weapon:{bot.weapon}</p>
+                                  <p className="card-text">Catchphrase:{bot.catchphrase}</p>
+                                  <p className="card-text">Bot_class:{bot.bot_class}</p>
+                                  <p className="card-text">Damage:{bot.damage}</p>
+                                  </div>
+                              </div>
+                          );
+                      })}
+                  </div>
+              </div>
         </div>
      )
 };
